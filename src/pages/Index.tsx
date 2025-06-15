@@ -1,11 +1,13 @@
-
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Brain, Upload, BarChart, Download, Sparkles, Target, Zap } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { DemoVideoModal } from "@/components/DemoVideoModal";
 
 const Index = () => {
   const navigate = useNavigate();
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
 
   const features = [
     {
@@ -70,6 +72,7 @@ const Index = () => {
               variant="outline" 
               className="border-slate-600 text-slate-300 hover:bg-slate-800 px-8 py-3 text-lg"
               size="lg"
+              onClick={() => setIsDemoOpen(true)}
             >
               Watch Demo
             </Button>
@@ -169,6 +172,12 @@ const Index = () => {
           </Button>
         </div>
       </div>
+
+      {/* Demo Video Modal */}
+      <DemoVideoModal 
+        isOpen={isDemoOpen} 
+        onClose={() => setIsDemoOpen(false)} 
+      />
     </div>
   );
 };
